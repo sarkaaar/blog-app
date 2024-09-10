@@ -1,10 +1,10 @@
 package com.blog.app.Reposotory;
 
-import com.blog.app.Entity.Blog;
+import com.blog.app.Entity.Category;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BlogRepository extends CrudRepository<Blog, Integer> {
+public interface CategoryRepository extends CrudRepository<Category, Integer> {
 
 }

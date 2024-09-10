@@ -1,10 +1,11 @@
 package com.blog.app.Reposotory;
 
-import com.blog.app.Entity.Blog;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.xml.stream.events.Comment;
+
 @Repository
-public interface BlogRepository extends CrudRepository<Blog, Integer> {
+public interface CommentRepository extends CrudRepository<Comment, Integer> {
 
 }
