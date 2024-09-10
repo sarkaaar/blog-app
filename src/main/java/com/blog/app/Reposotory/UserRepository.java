@@ -1,2 +1,4 @@
-package com.blog.app.Reposotory;public class UserRepository {
+package com.blog.app.Reposotory;
+
+public class UserRepository {
 }

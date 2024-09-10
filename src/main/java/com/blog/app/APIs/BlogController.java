@@ -1,2 +1,4 @@
-package com.blog.app.APIs;public class BlogController {
+package com.blog.app.APIs;
+
+public class BlogController {
 }

@@ -1,2 +1,4 @@
-package com.blog.app.Configs;public class SecurityConfig {
+package com.blog.app.Configs;
+
+public class SecurityConfig {
 }

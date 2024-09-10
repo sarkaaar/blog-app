@@ -1,2 +1,4 @@
-package com.blog.app.Service;public class UserService {
+package com.blog.app.Service;
+
+public class UserService {
 }
