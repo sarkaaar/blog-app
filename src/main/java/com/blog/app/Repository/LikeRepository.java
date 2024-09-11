@@ -1,4 +1,4 @@
-package com.blog.app.Reposotory;
+package com.blog.app.Repository;
 
 import com.blog.app.Entity.Likes;
 import org.springframework.data.repository.CrudRepository;

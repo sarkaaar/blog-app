@@ -1,6 +1,5 @@
 package com.blog.app.Entity;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,7 +11,7 @@ public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    String postID;
+    Integer postID;
     @Column(name = "title")
     String title;
     @Column(name = "content")
@@ -23,6 +22,5 @@ public class Blog {
     String userID;
     @Column(name = "category_id")
     String categoryID;
-
 
 }

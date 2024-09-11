@@ -8,19 +8,17 @@ import lombok.*;
 @Table(name = "comments")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    String commentID;
+    Integer commentID;
     @Column(name = "content")
-    String  Content;
+    String content;
     @Column(name = "date")
-    String CommentDate;
+    String commentDate;
     @Column(name = "blog_id")
-    String PostID ;
+    String blogID ;
     @Column(name = "user_id")
-    String  UserID ;
+    String userID ;
 }

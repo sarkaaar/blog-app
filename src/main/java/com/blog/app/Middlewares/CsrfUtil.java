@@ -1,20 +1,13 @@
 package com.blog.app.Middlewares;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
 public class CsrfUtil {
     static final String randomTokenString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789?,-)(*&";
     static SecureRandom rnd = new SecureRandom();
     private static final List<String> tokenList = new ArrayList<String>();
-
-
 
     String randomString() {
         StringBuilder sb = new StringBuilder(128);

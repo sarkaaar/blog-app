@@ -2,13 +2,13 @@ package com.blog.app.Service;
 
 import com.blog.app.Entity.User;
 import com.blog.app.Middlewares.*;
-import com.blog.app.Reposotory.UserRepository;
+import com.blog.app.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-@Service
+@Component
 public class UserService {
     JwtUtil jwt = new JwtUtil();
     CsrfUtil csrf = new CsrfUtil();
@@ -34,37 +34,6 @@ public class UserService {
         return true;
     }
 
-    public User getUserByID(String userID, String jwtToken) {
-
-        if (!validateUserToken(userID, jwtToken)) {
-            return null;
-        }
-
-        return userRepository.findByUserID(userID);
-    }
-
-    public String updateUser(String userID, User newUser, String jwtToken, String csrfToken) {
-        if (!csrf.getToken(csrfToken)) {
-            return null;
-        }
-        if (!validateUserToken(userID, jwtToken)) {
-            return null;
-        }
-
-        Optional<User> user = userRepository.findById(newUser.getId());
-
-        String encryptedPass = encrypt.encrypt(newUser.getPassword(), "secret");
-
-        user.ifPresent(user1 -> {
-            user1.setName(newUser.getName());
-            user1.setEmail(newUser.getEmail());
-            user1.setPassword(encryptedPass);
-        });
-
-        userRepository.save(user.get());
-        return csrf.generateToken();
-    }
-
     public Boolean loginUser(String email, String password) {
         String encryptedPass = encrypt.encrypt(password, "secret");
 
@@ -77,11 +46,4 @@ public class UserService {
         return false;
     }
 
-    private boolean validateUserToken(String userID, String jwtToken) {
-        String tokenEmail = emailValidate.getUserEmail(jwtToken);
-        User derivedUser = userRepository.findByEmail(tokenEmail);
-
-        return (derivedUser.getEmail().equals(userID) && validateToken.validateToken(jwtToken));
-
-    }
 }

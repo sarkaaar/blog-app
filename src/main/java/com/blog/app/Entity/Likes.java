@@ -10,7 +10,7 @@ public class Likes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    String id;
+    Integer id;
     @Column(name = "date")
     String CommentDate;
     @Column(name = "blog_id")

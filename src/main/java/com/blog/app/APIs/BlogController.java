@@ -11,13 +11,8 @@ import java.sql.SQLException;
 @RequestMapping("api/blog")
 @RestController
 public class BlogController {
-
-    private final BlogService blogService;
-
     @Autowired
-    public BlogController(BlogService blogService) {
-        this.blogService = blogService;
-    }
+    private  BlogService blogService;
 
     @PostMapping("new")
     public Boolean newBlog(@RequestBody Blog blog) {
@@ -35,8 +30,8 @@ public class BlogController {
     }
 
     @PostMapping("get")
-    public Boolean getBlog(@RequestBody Blog blog) {
-        return blogService.getBlog(blog.getPostID());
+    public Boolean getBlog(@RequestBody Integer blog) {
+        return blogService.getBlog(blog);
     }
 
     @PostMapping("get-all")

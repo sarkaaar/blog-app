@@ -1,5 +1,6 @@
 package com.blog.app.APIs;
 
+import com.blog.app.Entity.Comments;
 import com.blog.app.Service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,15 +12,11 @@ import javax.xml.stream.events.Comment;
 @RestController
 public class MessagesController {
 
-    private final CommentService commentService;
-
     @Autowired
-    public MessagesController(CommentService commentService) {
-        this.commentService = commentService;
-    }
+    private  CommentService commentService;
 
     @PostMapping("add")
-    public Boolean addComment(@RequestBody Comment comment) {
+    public Boolean addComment(@RequestBody Comments comment) {
         return commentService.addComment(comment);
     }
 

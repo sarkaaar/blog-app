@@ -1,4 +1,4 @@
-package com.blog.app.Reposotory;
+package com.blog.app.Repository;
 
 import com.blog.app.Entity.Category;
 import org.springframework.data.repository.CrudRepository;

@@ -1,7 +1,7 @@
 package com.blog.app.Service;
 
 import com.blog.app.Entity.Blog;
-import com.blog.app.Reposotory.BlogRepository;
+import com.blog.app.Repository.BlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
