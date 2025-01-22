@@ -1,29 +1,50 @@
 package com.blog.app.Service;
 
-import com.blog.app.Entity.User;
-import com.blog.app.Middlewares.*;
+import com.blog.app.Configs.SecurityConfig.Utils.JWTUtils;
+import com.blog.app.Entity.Users;
+import com.blog.app.Middlewares.EmailValidate;
+import com.blog.app.Middlewares.PassEncrypt;
+import com.blog.app.Middlewares.TokenValidate;
 import com.blog.app.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
-@Component
+@Service
 public class UserService {
-    JwtUtil jwt = new JwtUtil();
-    CsrfUtil csrf = new CsrfUtil();
+    @Autowired
+    JWTUtils jwt;
 
-    TokenValidate validateToken = new TokenValidate();
-    EmailValidate emailValidate = new EmailValidate();
-    PassEncrypt encrypt = new PassEncrypt();
+    @Autowired
+    TokenValidate validateToken;
+
+    @Autowired
+    EmailValidate emailValidate;
+
+    @Autowired
+    PassEncrypt encrypt;
 
     @Autowired
     private UserRepository userRepository;
 
-    public Boolean signUp(User user) {
+    public List<Users> getAllUsers() {
+        return (List<Users>) userRepository.findAll();
+    }
+
+    public Users save(Users user) {
+        user.setPassword(user.getPassword());
+        return userRepository.save(user);
+    }
+
+    public Users findByUsername(String username) {
+        return userRepository.findByEmail(username);
+    }
+//
+    public Boolean signUp(Users user) {
         String encryptedPass = encrypt.encrypt(user.getPassword(), "secret");
         user.setPassword(encryptedPass);
-        User existingUser = userRepository.findByEmail(user.getEmail());
+        Users existingUser = userRepository.findByEmail(user.getEmail());
 
         if (existingUser != null) {
             return false;
@@ -37,13 +58,11 @@ public class UserService {
     public Boolean loginUser(String email, String password) {
         String encryptedPass = encrypt.encrypt(password, "secret");
 
-        User user = userRepository.findByEmailAndPassword(email, encryptedPass);
+        Users user = userRepository.findByEmailAndPassword(email, encryptedPass);
 
-        if (user != null) {
-            return true;
-        }
-
-        return false;
+        return user != null;
     }
+
+
 
 }

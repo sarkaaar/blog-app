@@ -1,0 +1,5 @@
+INSERT INTO users (name, status, email, phone, password, role) VALUES ('John Doe', 'Active', 'john.doe@example.com', '1234567890', 'password123', 'ADMIN');
+INSERT INTO users (name, status, email, phone, password, role) VALUES ('Jane Smith', 'Active', 'jane.smith@example.com', '0987654321', 'securepass', 'USER');
+INSERT INTO users (name, status, email, phone, password, role) VALUES ('Alice Johnson', 'Inactive', 'alice.johnson@example.com', '1122334455', 'alicepass', 'MANAGER');
+INSERT INTO users (name, status, email, phone, password, role) VALUES ('Bob Brown', 'Active', 'bob.brown@example.com', '2233445566', 'bobsecure', 'USER');
+INSERT INTO users (name, status, email, phone, password, role) VALUES ('Charlie White', 'Active', 'charlie.white@example.com', '3344556677', 'charliepass', 'ADMIN');

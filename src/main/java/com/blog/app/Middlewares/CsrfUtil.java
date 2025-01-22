@@ -1,9 +1,12 @@
 package com.blog.app.Middlewares;
 
+import org.springframework.stereotype.Component;
+
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class CsrfUtil {
     static final String randomTokenString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789?,-)(*&";
     static SecureRandom rnd = new SecureRandom();

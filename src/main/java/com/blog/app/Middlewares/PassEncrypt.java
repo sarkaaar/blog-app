@@ -1,5 +1,7 @@
 package com.blog.app.Middlewares;
 
+import org.springframework.stereotype.Component;
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -8,6 +10,7 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+@Component
 public class PassEncrypt {
 
     private static SecretKeySpec secretKey;

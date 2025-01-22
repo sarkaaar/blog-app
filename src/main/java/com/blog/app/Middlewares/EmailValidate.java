@@ -1,9 +1,11 @@
 package com.blog.app.Middlewares;
 
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
 
 import java.util.Base64;
 
+@Component
 public class EmailValidate {
 
 
