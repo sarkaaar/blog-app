@@ -1,4 +1,4 @@
-package com.blog.app.Configs.SecurityConfig.Utils;
+package com.blog.app.Utils;
 
 
 import io.jsonwebtoken.Claims;

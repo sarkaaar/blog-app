@@ -1,11 +1,9 @@
 package com.blog.app.Service;
 
-import com.blog.app.Configs.SecurityConfig.Utils.JWTUtils;
 import com.blog.app.Entity.Users;
-import com.blog.app.Middlewares.EmailValidate;
 import com.blog.app.Middlewares.PassEncrypt;
-import com.blog.app.Middlewares.TokenValidate;
 import com.blog.app.Repository.UserRepository;
+import com.blog.app.Utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +13,6 @@ import java.util.List;
 public class UserService {
     @Autowired
     JWTUtils jwt;
-
-    @Autowired
-    TokenValidate validateToken;
-
-    @Autowired
-    EmailValidate emailValidate;
 
     @Autowired
     PassEncrypt encrypt;
@@ -40,7 +32,8 @@ public class UserService {
     public Users findByUsername(String username) {
         return userRepository.findByEmail(username);
     }
-//
+
+    //
     public Boolean signUp(Users user) {
         String encryptedPass = encrypt.encrypt(user.getPassword(), "secret");
         user.setPassword(encryptedPass);
@@ -62,7 +55,6 @@ public class UserService {
 
         return user != null;
     }
-
 
 
 }

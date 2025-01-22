@@ -1,6 +1,6 @@
-package com.blog.app.Configs.SecurityConfig;
+package com.blog.app.configs;
 
-import com.blog.app.Configs.SecurityConfig.Utils.JWTUtils;
+import com.blog.app.Utils.JWTUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

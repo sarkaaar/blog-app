@@ -1,6 +1,7 @@
-package com.blog.app.Configs.SecurityConfig;
+package com.blog.app.configs;
 
-import com.blog.app.Configs.SecurityConfig.Utils.JWTUtils;
+import com.blog.app.Utils.JWTUtils;
+import com.blog.app.configs.services.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

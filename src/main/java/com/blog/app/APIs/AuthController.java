@@ -1,9 +1,9 @@
 package com.blog.app.APIs;
 
-import com.blog.app.Configs.SecurityConfig.Utils.JwtService;
 import com.blog.app.Entity.Request;
 import com.blog.app.Entity.Users;
 import com.blog.app.Service.UserService;
+import com.blog.app.configs.services.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

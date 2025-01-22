@@ -1,10 +1,7 @@
-package com.blog.app.Configs.SecurityConfig.Utils;
+package com.blog.app.configs.services;
 
-
-//import org.example.gatewayauth.model.AuthenticationRequest;
-//import org.example.gatewayauth.util.JwtUtil;
-import com.blog.app.Configs.SecurityConfig.CustomUserDetailsService;
 import com.blog.app.Entity.Request;
+import com.blog.app.Utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
