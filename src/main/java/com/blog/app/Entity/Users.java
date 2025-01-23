@@ -17,6 +17,8 @@ public class Users {
     String status;
     @Column(name = "email")
     String email;
+    @Column(name = "username")
+    String username;
     @Column(name = "phone")
     String phone;
     @Column(name = "password")

@@ -19,13 +19,13 @@ public class AuthController {
     @Autowired
     private JwtService jwtService;
 
-    @PostMapping("/login")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody Request authenticationRequest) throws Exception {
-        final String jwt = jwtService.createJwtToken(authenticationRequest);
+    @PostMapping("/sign-in")
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody Request authRequest) throws Exception {
+        final String jwt = jwtService.createJwtToken(authRequest);
         return ResponseEntity.ok(jwt);
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/sign-up")
     public ResponseEntity<?> registerUser(@RequestBody Users user) {
         if (userService.findByUsername(user.getEmail()) != null) {
             return ResponseEntity.badRequest().body("Username is already taken.");

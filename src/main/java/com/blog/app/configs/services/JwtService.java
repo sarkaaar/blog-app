@@ -21,10 +21,40 @@ public class JwtService {
     private JWTUtils jwtUtil;
 
     public String createJwtToken(Request authenticationRequest) throws Exception {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                authenticationRequest.getEmail(), authenticationRequest.getPassword()));
+//        String identifier = authenticationRequest.getIdentifier(); // Assume this field contains the identifier
+//        String password = authenticationRequest.getPassword();
+//        UserDetails userDetails;
+//
+//        if (isValidEmail(identifier)) {
+//            // Lookup by email
+//            userDetails = userDetailsService.loadUserByEmail(identifier);
+//        } else if (isValidPhoneNumber(identifier)) {
+//            // Lookup by phone number
+//            userDetails = userDetailsService.loadUserByPhoneNumber(identifier);
+//        } else {
+//            // Lookup by user ID
+//            userDetails = userDetailsService.loadUserByUsername(identifier);
+//        }
+//        // Authenticate user
+//        authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(userDetails.getUsername(), password)
+//        );
+//
+//        return jwtUtil.generateToken(userDetails);
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
+
+                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                (authenticationRequest.getIdentifier()), authenticationRequest.getPassword()));
+
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getIdentifier());
         return jwtUtil.generateToken(userDetails);
+    }
+
+    private boolean isValidEmail(String input) {
+        return input.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+    }
+
+    private boolean isValidPhoneNumber(String input) {
+        return input.matches("^\\d{10}$"); // Adjust regex based on your phone number format
     }
 }

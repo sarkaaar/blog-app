@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import Navbar from "../components/Navbar"
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function SignIn() {
     console.log("working");
     await axios
       .post("http://localhost:8080/api/auth/sign-in", {
-        email: email,
+        identifier: email,
         password: password,
       })
       .then(function (response) {
@@ -34,6 +35,7 @@ export default function SignIn() {
 
   return (
     <>
+    <Navbar />
       <div className=" flex justify-center mt-48">
         <div className="w-fit bg-slate-50 rounded-xl min-h-full py-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-md w-full space-y-8">

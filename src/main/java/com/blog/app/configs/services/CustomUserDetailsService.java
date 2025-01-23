@@ -26,4 +26,26 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
         return new User(user.getEmail(), user.getPassword(), new ArrayList<>());
     }
+
+    public UserDetails loadUserByEmail(String email) {
+        Users user;
+        try {
+            user = userRepository.findByEmail(email);
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("User not found with email: " + email);
+        }
+        return new User(user.getEmail(), user.getPassword(), new ArrayList<>());
+    }
+
+    public UserDetails loadUserByPhoneNumber(String phoneNumber) {
+
+        Users user;
+        try {
+            user = userRepository.findByPhone(phoneNumber);
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("User not found with phone number: " + phoneNumber);
+        }
+        return new User(user.getPhone(), user.getPassword(), new ArrayList<>());
+    }
+
 }
