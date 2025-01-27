@@ -25,6 +25,7 @@ public class AuthController {
         return ResponseEntity.ok(jwt);
     }
 
+
     @PostMapping("/sign-up")
     public ResponseEntity<?> registerUser(@RequestBody Users user) {
         if (userService.findByUsername(user.getEmail()) != null) {
