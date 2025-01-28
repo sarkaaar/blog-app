@@ -27,17 +27,7 @@ export default function SignIn() {
                 .post("http://localhost:8080/api/auth/sign-up", newUser)
                 .then(function (response) {
                     console.log(response);
-                    if (response.data.statusCode === 200) {
-                        localStorage.setItem("jwt", response.data.jwt);
-                        localStorage.setItem("csrf", response.data.csrf);
-
-                        console.log("csrf =" + response.data.csrf);
-                        console.log("jwt =" + response.data.jwt);
-
-                        navigate(`/welcome/${response.data.id}`);
-                    } else if (response.data.statusCode === 400)
-                        alert("User with this email aready exists ");
-                    else alert("Error Creating User ");
+                    navigate(`/sign-in`);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -51,7 +41,7 @@ export default function SignIn() {
                 <div className="w-96 bg-slate-50 rounded-xl min-h-full py-12 px-4 sm:px-4 lg:px-4">
                     <div className="max-w-md w-full space-y-8">
                         <div>
-                         {/*  */}
+                            {/*  */}
                             <h2 className="mt-6 text-center text-3xl tracking-tight font-bold text-gray-900">
                                 Create an Account
                             </h2>

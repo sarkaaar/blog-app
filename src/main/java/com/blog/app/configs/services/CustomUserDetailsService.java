@@ -5,6 +5,7 @@ import com.blog.app.Entity.Users;
 import com.blog.app.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -23,7 +25,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Users user_ = userRepository.findByUsername(email);
+        Users user = userRepository.findByUsername(email);
+
+//        List<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
+
 //        UserDetails user = new UserDetails() {
 //            @Override
 //            public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -45,7 +50,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 //            throw new UsernameNotFoundException("User not found with username: " + email);
 //        }
 
-        return user_;
+        return new User(user.getUsername(), user.getPassword(), new ArrayList<>());
     }
 
     public UserDetails loadUserByEmail(String email) {

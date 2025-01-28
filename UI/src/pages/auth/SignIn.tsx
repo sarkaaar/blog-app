@@ -18,24 +18,16 @@ export default function SignIn() {
       })
       .then(function (response) {
         console.log(response);
-        if (response.data.statusCode === 200) {
-          localStorage.setItem("jwt", response.data.jwt);
-          localStorage.setItem("csrf", response.data.csrf);
-
-          console.log("csrf =" + response.data.csrf);
-          console.log("jwt =" + response.data.jwt);
-
-          navigate(`/welcome/${response.data.id}`);
-        } else if (response.data.statusCode === 404) alert("Please Enter a valid email/password.");
+        navigate("/");
       })
       .catch(function (error) {
         console.log(error);
-    });
+      });
   };
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div className=" flex justify-center mt-48">
         <div className="w-fit bg-slate-50 rounded-xl min-h-full py-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-md w-full space-y-8">

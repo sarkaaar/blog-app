@@ -12,7 +12,7 @@ interface NavigationItem {
 const navigation : NavigationItem[] = [
   { name: 'Home', href: '/', current: true },
   { name: 'Login', href: '/sign-in', current: false },
-  { name: 'Sugn Up', href: '/sign-up', current: false },
+  { name: 'Sign Up', href: '/sign-up', current: false },
 ]
 
 function classNames(...classes: (string | undefined | null | boolean)[]): string {

@@ -6,6 +6,7 @@ import com.blog.app.Service.UserService;
 import com.blog.app.configs.services.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +32,13 @@ public class AuthController {
         if (userService.findByUsername(user.getEmail()) != null) {
             return ResponseEntity.badRequest().body("Username is already taken.");
         }
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String rawPassword = "my_secure_password";
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+
+        user.setPassword(encodedPassword);
+
         userService.save(user);
         return ResponseEntity.ok("User registered successfully.");
     }
