@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 
@@ -19,12 +19,12 @@ export default function SignIn() {
             email: email,
             username: username,
             password: password,
-            contact: contact,
+            phone: contact,
         };
 
         if (password === confirmPassword)
             await axios
-                .post("http://localhost:8080/api/v1/user/", newUser)
+                .post("http://localhost:8080/api/auth/sign-up", newUser)
                 .then(function (response) {
                     console.log(response);
                     if (response.data.statusCode === 200) {

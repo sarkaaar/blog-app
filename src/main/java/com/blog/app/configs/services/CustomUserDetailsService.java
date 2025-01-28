@@ -4,6 +4,7 @@ package com.blog.app.configs.services;
 import com.blog.app.Entity.Users;
 import com.blog.app.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -20,11 +22,30 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Users user = userRepository.findByEmail(email);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found with username: " + email);
-        }
-        return new User(user.getEmail(), user.getPassword(), new ArrayList<>());
+
+        Users user_ = userRepository.findByUsername(email);
+//        UserDetails user = new UserDetails() {
+//            @Override
+//            public Collection<? extends GrantedAuthority> getAuthorities() {
+//                return null;
+//            }
+//
+//            @Override
+//            public String getPassword() {
+//                return user_.getPassword();
+//            }
+//
+//            @Override
+//            public String getUsername() {
+//                return user_.getUsername();
+//            }
+//        }
+////                (UserDetails) userRepository.findByUsername(email);
+//        if (user == null) {
+//            throw new UsernameNotFoundException("User not found with username: " + email);
+//        }
+
+        return user_;
     }
 
     public UserDetails loadUserByEmail(String email) {

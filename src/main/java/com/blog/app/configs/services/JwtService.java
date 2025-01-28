@@ -44,9 +44,9 @@ public class JwtService {
 
 
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                (authenticationRequest.getIdentifier()), authenticationRequest.getPassword()));
+                (authenticationRequest.getUsername()), authenticationRequest.getPassword()));
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getIdentifier());
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         return jwtUtil.generateToken(userDetails);
     }
 

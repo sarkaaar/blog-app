@@ -13,7 +13,7 @@ export default function SignIn() {
     console.log("working");
     await axios
       .post("http://localhost:8080/api/auth/sign-in", {
-        identifier: email,
+        username: email,
         password: password,
       })
       .then(function (response) {
