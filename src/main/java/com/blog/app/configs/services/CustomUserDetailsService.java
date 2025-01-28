@@ -27,7 +27,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         Users user = userRepository.findByUsername(email);
 
-//        List<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
 
 //        UserDetails user = new UserDetails() {
 //            @Override

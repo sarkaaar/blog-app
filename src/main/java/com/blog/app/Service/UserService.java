@@ -5,6 +5,8 @@ import com.blog.app.Middlewares.PassEncrypt;
 import com.blog.app.Repository.UserRepository;
 import com.blog.app.Utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,12 +50,17 @@ public class UserService {
         return true;
     }
 
-    public Boolean loginUser(String email, String password) {
-        String encryptedPass = encrypt.encrypt(password, "secret");
+    public Boolean userSignUp(Users user) {
+        if (userRepository.findByUsername(user.getUsername()) != null) {
+            return false;
+        }
 
-        Users user = userRepository.findByEmailAndPassword(email, encryptedPass);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
 
-        return user != null;
+        userRepository.save(user);
+        return true;
     }
 
 
