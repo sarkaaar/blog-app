@@ -33,7 +33,7 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .requestMatchers("api/auth/**", "api/auth/sign-in", "api/auth/sign-up").permitAll()
+                .requestMatchers("api/auth/**", "api/auth/sign-in", "api/auth/sign-up", "api/auth/message/add" , "api/auth/message/get").permitAll()
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .anyRequest().authenticated()
                 .and()

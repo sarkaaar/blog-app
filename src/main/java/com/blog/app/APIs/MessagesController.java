@@ -1,11 +1,14 @@
 package com.blog.app.APIs;
 
 import com.blog.app.Entity.Comments;
+import com.blog.app.Entity.Messages;
 import com.blog.app.Service.CommentService;
+import com.blog.app.Service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.stream.events.Comment;
+import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RequestMapping("api/message")
@@ -13,27 +16,26 @@ import javax.xml.stream.events.Comment;
 public class MessagesController {
 
     @Autowired
-    private  CommentService commentService;
+    private MessageService messageService;
 
     @PostMapping("add")
-    public Boolean addComment(@RequestBody Comments comment) {
-        return commentService.addComment(comment);
+    public Boolean addMessages(@RequestBody Messages messages) {
+        return messageService.addMessage(messages);
     }
 
     @PostMapping("delete")
-    public Boolean deleteComment(@RequestBody Comment comment) {
-        return commentService.deleteComment(comment.getText());
+    public Boolean deleteMessage(@RequestBody Messages messages) {
+        return messageService.deleteMessage(messages);
     }
 
     @PostMapping("update")
-    public Boolean updateComment(@RequestBody Comment comment) {
-        return commentService.updateComment(String.valueOf(comment));
+    public Boolean updateMessage(@RequestBody Messages messages) {
+        return messageService.updateMessage(messages);
     }
 
     @PostMapping("get")
-    public Boolean getComments(@RequestBody Comment comment) {
-        return commentService.getAllComments(comment.getText());
+    public List<Messages> getMessages(@RequestBody Messages messages) {
+        return messageService.getMessages(messages);
     }
-
 
 }
