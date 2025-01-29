@@ -18,9 +18,12 @@ export default function SignIn() {
       })
       .then(function (response) {
         console.log(response);
-        navigate("/");
+        alert("login success!!!")
+        localStorage.getItem("jwt");
+        navigate("/messages");
       })
       .catch(function (error) {
+        alert("unable to login!!!")
         console.log(error);
       });
   };

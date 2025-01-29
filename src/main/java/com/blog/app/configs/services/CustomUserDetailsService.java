@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -25,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Users user = userRepository.findByUsername(email);
+        Optional<Users> user = userRepository.findByUsername(email);
 
 
 //        UserDetails user = new UserDetails() {
@@ -49,7 +50,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 //            throw new UsernameNotFoundException("User not found with username: " + email);
 //        }
 
-        return new User(user.getUsername(), user.getPassword(), new ArrayList<>());
+        return new User(user.get().getUsername(), user.get().getPassword(), new ArrayList<>());
     }
 
     public UserDetails loadUserByEmail(String email) {

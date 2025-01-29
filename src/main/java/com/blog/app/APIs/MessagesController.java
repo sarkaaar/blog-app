@@ -18,22 +18,22 @@ public class MessagesController {
     @Autowired
     private MessageService messageService;
 
-    @PostMapping("add")
+    @PostMapping("/add")
     public Boolean addMessages(@RequestBody Messages messages) {
         return messageService.addMessage(messages);
     }
 
-    @PostMapping("delete")
+    @PostMapping("/delete")
     public Boolean deleteMessage(@RequestBody Messages messages) {
         return messageService.deleteMessage(messages);
     }
 
-    @PostMapping("update")
+    @PostMapping("/update")
     public Boolean updateMessage(@RequestBody Messages messages) {
         return messageService.updateMessage(messages);
     }
 
-    @PostMapping("get")
+    @PostMapping("/get")
     public List<Messages> getMessages(@RequestBody Messages messages) {
         return messageService.getMessages(messages);
     }
