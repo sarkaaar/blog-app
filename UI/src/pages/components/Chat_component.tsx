@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+
 
 export default function Chat_component() {
     // const chatMessages = [
@@ -49,6 +51,8 @@ export default function Chat_component() {
         status: string;
     }
 
+    const { toMessage } = useParams();
+
     const [message, setMessages] = useState("");
     const [allMessages, setAllMessages] = useState([]);
 
@@ -59,7 +63,7 @@ export default function Chat_component() {
         console.log("JWT Token:", jwt);
         try {
             const response = await axios.post("http://localhost:8080/api/message/new", {
-                fromMessage: "username", toMessage: "toMessage", message: message, status: "SENT",
+                fromMessage: sender, toMessage: "lalit", message: message, status: "SENT",
             }, {
                 headers: {Authorization: `Bearer ${jwt}`},
             });
@@ -85,9 +89,9 @@ export default function Chat_component() {
 
     const getAllMessages = async () => {
         console.log("jwt -> " + jwt);
-        const toMessage: string = "lalit";
+        // const toMessage: string = "lalit";
         await axios
-            .post("http://localhost:8080/api/message/get", {
+            .post("http://localhost:8080/api/message/get/", {
                 fromMessage: sender, toMessage: toMessage
             }, {
                 headers: {Authorization: `Bearer ${jwt}`},
@@ -107,7 +111,7 @@ export default function Chat_component() {
 
     useEffect(() => {
         getAllMessages();
-    });
+    },[]);
 
     return (<>
             <div className="flex justify-center">
