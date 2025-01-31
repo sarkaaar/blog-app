@@ -33,7 +33,8 @@ public class SecurityConfig extends SecurityConfigurerAdapter {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors(cors -> cors.disable()).csrf(csrf -> csrf.disable())
                 .authorizeRequests()
-                .requestMatchers("/api/auth/**", "/api/auth/sign-in", "/api/auth/sign-up", "/api/message/**").permitAll()
+                .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/api/message/delete").hasRole("MANAGER")
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .anyRequest().authenticated()
                 .and()

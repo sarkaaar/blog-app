@@ -10,7 +10,6 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
 
   const login = async () => {
-    console.log("working");
     await axios
       .post("http://localhost:8080/api/auth/sign-in", {
         username: email,
@@ -20,6 +19,7 @@ export default function SignIn() {
         console.log(response.data);
         alert("login success!!!")
         localStorage.setItem("jwt", response.data);
+        localStorage.setItem("username", email);
         navigate("/messages");
       })
       .catch(function (error) {

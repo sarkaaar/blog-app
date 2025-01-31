@@ -1,9 +1,13 @@
 package com.blog.app.configs.services;
 
 
+import com.blog.app.Entity.Role;
 import com.blog.app.Entity.Users;
+import com.blog.app.Enums.UserRoles;
 import com.blog.app.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,7 +15,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -22,7 +28,23 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Users> user = userRepository.findByUsername(email);
-        return new User(user.get().getUsername(), user.get().getPassword(), new ArrayList<>());
+
+        if (user.isPresent())
+
+//        return new User.withUsername(user.get().getUsername())
+//                .password(user.get().getPassword())
+//                .roles(user.get().getRole())
+//                .build();
+
+//        return new User(user.get().getUsername(), user.get().getPassword(), new ArrayList<>());
+
+            return new User(user.get().getUsername(), user.get().getPassword(), getAuthorities(user.get().getRole()));
+        else
+            throw new UsernameNotFoundException("User not found");
+    }
+
+    private Set<GrantedAuthority> getAuthorities(String role) {
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + role));
     }
 
 //    public UserDetails loadUserByEmail(String email) {

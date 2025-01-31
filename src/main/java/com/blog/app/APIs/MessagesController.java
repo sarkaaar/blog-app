@@ -22,8 +22,8 @@ public class MessagesController {
     }
 
     @PostMapping("/delete")
-    public Boolean deleteMessage(@RequestBody Messages messages) {
-        return messageService.deleteMessage(messages);
+    public Boolean deleteMessage(@RequestBody int id) {
+        return messageService.deleteMessage(id);
     }
 
     @PostMapping("/update")

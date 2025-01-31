@@ -10,6 +10,7 @@ export default function SignIn() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [username, setUsername] = useState("");
     const [contact, setContact] = useState("");
+    const [role, setRole] = useState("");
 
     const navigate = useNavigate();
 
@@ -20,6 +21,7 @@ export default function SignIn() {
             username: username,
             password: password,
             phone: contact,
+            role: role,
         };
 
         if (password === confirmPassword)
@@ -137,6 +139,22 @@ export default function SignIn() {
                                             setContact(e.target.value.replace(/\D/g, ""));
                                         }}
                                     />
+
+                                    <select
+                                        id="role"
+                                        name="role"
+                                        required
+                                        className="mb-2 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                        value={contact}
+                                        onChange={(e) => {
+                                            setRole(e.target.value);
+                                        }}
+                                    >
+                                        <option value={"USER"}>User</option>
+                                        <option value={"MANAGER"}>Manager</option>
+                                        <option value={"ADMIN"}>Admin</option>
+                                        </select>
+
 
                                     {password != confirmPassword && confirmPassword != "" ? (
                                         <p className="text-red-600 text-small">
