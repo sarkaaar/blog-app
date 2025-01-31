@@ -1,26 +1,24 @@
 package com.blog.app.APIs;
 
-import com.blog.app.Entity.Comments;
 import com.blog.app.Entity.Messages;
-import com.blog.app.Service.CommentService;
+import com.blog.app.Entity.Users;
 import com.blog.app.Service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.stream.events.Comment;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RequestMapping("api/message")
 @RestController
 public class MessagesController {
-
     @Autowired
     private MessageService messageService;
-
-    @PostMapping("/add")
-    public Boolean addMessages(@RequestBody Messages messages) {
-        return messageService.addMessage(messages);
+    @PostMapping("/new")
+    public ResponseEntity<?> addMessages(@RequestBody Messages messages) {
+        messageService.addMessage(messages);
+        return ResponseEntity.ok("message sent successfully.");
     }
 
     @PostMapping("/delete")

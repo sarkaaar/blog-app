@@ -48,34 +48,33 @@ export default function Chat_component() {
   const jwt = localStorage.getItem("jwt");
 
   const sendMessages = async () => {
-    console.log("working");
-    console.log({
-      fromMessage: "username",
-      toMessage: "toMessage",
-      status: "SENT"
-    })
-    await axios
-      .post("http://localhost:8080/api/message/add", {
-        fromMessage: "username",
-        toMessage: "toMessage",
-        status: "SENT"
-      }, {
-        headers: { token: `Bearer ${jwt}`}})
-      .then(function (response) {
-        console.log(response);
-        console.log(message)
-        
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+    console.log("JWT Token:", jwt);
+    try {
+        const response = await axios.post(
+            "http://localhost:8080/api/message/new",
+            {
+                fromMessage: "username",
+                toMessage: "toMessage",
+                message: "message",
+                status: "SENT"
+            },
+          {
+              headers: { Authorization: `Bearer ${jwt}` }
+          })
+        console.log("Response:", response.data);
+    } catch (error) {
+        console.error("Error:", error);
+    }
+};
 
   const getAllMessages = async () => {
-    console.log("getting messages");
+    console.log("jwt -> " + jwt);
     await axios
       .post("http://localhost:8080/api/message/get", {
         sender: "username",
+      },
+      {
+          headers: { Authorization: `Bearer ${jwt}` }
       })
       .then(function (response) {
         console.log(response);
@@ -94,7 +93,7 @@ export default function Chat_component() {
 
   useEffect(()=>{
     getAllMessages();
-  },[allMessages])
+  },[])
 
 
   return (

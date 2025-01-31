@@ -23,6 +23,8 @@ public class Messages {
     String toMessage;
     @Column(name = "date")
     Date datetime;
+    @Column(name = "message")
+    String message;
     @Column(name = "status")
-    Date status;
+    String status;
 }

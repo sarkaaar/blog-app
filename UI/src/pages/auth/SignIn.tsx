@@ -17,9 +17,9 @@ export default function SignIn() {
         password: password,
       })
       .then(function (response) {
-        console.log(response);
+        console.log(response.data);
         alert("login success!!!")
-        localStorage.getItem("jwt");
+        localStorage.setItem("jwt", response.data);
         navigate("/messages");
       })
       .catch(function (error) {
